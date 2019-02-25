@@ -1,5 +1,4 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#! /anaconda3/bin/python
 """
 Created on Tue Feb 19 23:06:12 2019
 
@@ -8,6 +7,7 @@ Created on Tue Feb 19 23:06:12 2019
 import pygame
 import game_functions as gf
 from pygame.sprite import Group
+from game_stats import GameStats
 
 from settings import Settings
 from ship import Ship
@@ -15,6 +15,7 @@ def run_game():
     #初始化pygame、设置和屏幕对象
     pygame.init()
     ai_settings = Settings()
+    stats = GameStats(ai_settings)
     screen = pygame.display.set_mode(
             (ai_settings.screen_width,ai_settings.screen_height))
     pygame.display.set_caption("Alien Invasion")
@@ -29,9 +30,10 @@ def run_game():
     while True:
         
         gf.check_events(ai_settings, screen, ship, bullets)
-        ship.update()
-        gf.update_bullets(bullets)
-        gf.update_aliens(ai_settings, aliens)
+        if stats.game_active:
+                ship.update()
+                gf.update_bullets(ai_settings , screen, ship, aliens, bullets)
+                gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
         gf.update_screen(ai_settings, screen, ship, aliens, bullets)
 
 

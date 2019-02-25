@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 Created on Tue Feb 19 23:40:12 2019
 
@@ -46,6 +44,12 @@ class Ship():
         #根据self.center_x与self.center_y更新rect对象
         self.rect.centerx = self.center_x
         self.rect.centery = self.center_y
-        
+    
+    def center_ship(self):
+        """重新将飞船放置在屏幕中央"""
+        self.center_x = self.screen_rect.centerx
+        self.center_y = self.screen_rect.bottom
+    
+
         
         
