@@ -4,11 +4,14 @@ Created on Tue Feb 19 23:40:12 2019
 @author: sin
 """
 import pygame
+from pygame.sprite import Sprite
 
-class Ship():
+
+class Ship(Sprite):
     
     def __init__(self,ai_settings,screen):
         """初始化飞船病设置其初始位置"""
+        super().__init__()
         self.screen = screen
         self.ai_settings = ai_settings
         #加载飞船图片并获取其外接矩形
